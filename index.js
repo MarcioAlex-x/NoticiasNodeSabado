@@ -11,7 +11,16 @@ app.engine('handlebars', exphbs.engine())
 app.set('view engine', 'handlebars')
 
 app.get('/',(req,res)=>{
-    res.render('home')
+    const sql = `SELECT * FROM noticias`
+    conn.query(sql,(err, data)=>{
+        if(err){
+            console.log(err)
+            return
+        }
+        const noticias = data
+        console.log(noticias)
+        res.render('home',{noticias})
+    })    
 })
 
 app.get('/create-post',(req, res)=>{
