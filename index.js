@@ -41,6 +41,20 @@ app.get('/noticia/:id',(req,res)=>{
     })
 })
 
+app.get('/edit/noticia/:id',(req, res)=>{
+    const id = req.params.id
+    const sql = `SELECT * FROM noticias WHERE id = ${id}`
+
+    conn.query(sql, id,(err, data)=>{
+        if(err){
+            console.log(err)
+            return
+        }
+        const noticia = data[0]
+        res.render('form-edit-post',{noticia})
+    })
+})
+
 app.post('/add-post', (req, res) => {
     const titulo = req.body.titulo
     const subtitulo = req.body.subtitulo

@@ -1,0 +1,32 @@
+{{#with noticia}}
+<h1>Editando {{titulo}}</h1>
+
+<form action="/edit-post" method="post">
+    <div>
+        <label>Título:</label>
+        <input value="{{titulo}}" name="titulo" type="text" placeholder="Informe o título...">
+    </div>
+    <div>
+        <label>Sub-título:</label>
+        <input value="{{subtitulo}}" name="subtitulo" type="text" placeholder="Informe o subtítulo...">
+    </div>
+    <div>
+        <label>Artigo:</label>
+        <textarea name="artigo" placeholder="Informe o título...">{{artigo}}
+        </textarea>
+    </div>
+    <div>
+        <label>Data de publicação:</label>
+        <input value="{{data_publicacao}}" name="data_publicacao" type="date" >
+    </div>
+    <div>
+        <label>Autor:</label>
+        <input value="{{autor}}" name="autor" type="text" placeholder="Informe o autor...">
+    </div>
+    <div>
+        <label>Fonte:</label>
+        <input value="{{fonte}}" name="fonte" type="text" placeholder="Informe a fonte...">
+    </div>
+    <input type="submit" value="Editar">
+</form>
+{{/with}}
