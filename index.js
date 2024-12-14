@@ -4,7 +4,8 @@ const mysql = require('mysql2')
 
 const app = express()
 
-app.use(express.urlencoded({ extends: true }))
+//middleware
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
 app.engine('handlebars', exphbs.engine())
@@ -18,7 +19,6 @@ app.get('/', (req, res) => {
             return
         }
         const noticias = data
-        console.log(noticias)
         res.render('home', { noticias })
     })
 })
@@ -74,6 +74,19 @@ app.post('/add-post', (req, res) => {
         return
     }
     
+})
+
+app.post('/delete-post/:id',(req, res)=>{
+    const id = req.params.id
+    const sql = `DELETE FROM noticias WHERE id = ${id}`
+
+    conn.query(sql,(err)=>{
+        if(err){
+            console.log(err)
+            return
+        }
+        res.redirect('/')
+    })
 })
 
 const conn = mysql.createConnection({
